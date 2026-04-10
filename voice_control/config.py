@@ -20,7 +20,7 @@ RATE     = 16000
 CHANNELS = 1
 
 # Testing
-TEST_WITHOUT_ROBOT = True  # set False when robot is connected
+TEST_WITHOUT_ROBOT = False  # set False when robot is connected
 
 # Duplication Prevention
 DUPLICATION_SECONDS = 3     # ignore the same command if heard within this window

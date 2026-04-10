@@ -14,13 +14,18 @@ To test w/o robot:
     Set TEST_WITHOUT_ROBOT = True in config.py and run python main.py
 """
 
-import threading
-import time
+import sys
+sys.path.append('../OpenCatPythonAPI')
+from PetoiRobot import *
 
 from transcribe import transcribe_audio
 from commands import parse_commands
+import threading
+import time
 
 if __name__ == "__main__":
+    autoConnect()  # connect FIRST before anything starts
+
     t1 = threading.Thread(target=transcribe_audio, daemon=True)
     t2 = threading.Thread(target=parse_commands, daemon=True)
 
@@ -33,4 +38,5 @@ if __name__ == "__main__":
         while True:
             time.sleep(1)
     except KeyboardInterrupt:
+        closePort()
         print("ended")
