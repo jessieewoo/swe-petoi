@@ -51,14 +51,8 @@ def transcribe_audio():
             if rec.AcceptWaveform(data):
                 result = json.loads(rec.Result())
                 text = result.get("text", "").strip()
-            else:
-                partial = json.loads(rec.PartialResult())
-                text = partial.get("partial", "").strip()
                 if text:
-                    text = text.split()[0]  # first word only, fire immediately
-
-            if text:
-                text_queue.put(text)
+                    text_queue.put(text)
 
 
 # testing
